@@ -12,6 +12,8 @@ document.addEventListener("DOMContentLoaded", () => {
   let total = 0;
   // Hide the other-title text input.
   $("#other-title").hide();
+   // Hide the color label
+   $("label[for='color']").hide();
   // Hide the color menu
   $("#color").hide();
   // Hide Bitcoin message
@@ -42,8 +44,10 @@ document.addEventListener("DOMContentLoaded", () => {
   $("#design").on("change", (e) => {
    if(e.target.value === "Select Theme"){
     $("#color").hide()
+    $("label[for='color']").hide();
    }
    if(e.target.value === "js puns"){
+    $("label[for='color']").show();
      // Only display the puns t-shirts
     $("#color").html(`
       <option value="cornflowerblue">Cornflower Blue (JS Puns shirt only)</option>
@@ -52,6 +56,7 @@ document.addEventListener("DOMContentLoaded", () => {
     `).show();
    }
    if(e.target.value === "heart js"){
+      $("label[for='color']").show();
       // Only display the heart t-shirts
       $("#color").html(`
       <option value="tomato">Tomato (I &#9829; JS shirt only)</option>
