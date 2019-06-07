@@ -1,6 +1,6 @@
 # Project Name: Interactive Form
 ## Project description 
-  We will be given a form. Our objective is to add customized conditional behavior and interactivity to it and then validate user input and providing helpful error messages when the user enters invalid information into the form fields.
+  We will be given a form. Our objective is to add customized conditional behavior and interactivity to it and then validate user input and provide helpful error messages when the user enters invalid information into the form fields.
 
 ## Skills used:
 - Basic to advanced DOM manipulation.
