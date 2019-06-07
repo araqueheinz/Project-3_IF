@@ -2,7 +2,7 @@
 Treehouse FSJS Techdegree:
 Heinz Araque
 05/31/2019
-project 3 - Interactive Form
+Project 3 - Interactive Form
 ******************************************/
 
 document.addEventListener("DOMContentLoaded", () => {
