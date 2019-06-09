@@ -211,7 +211,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // Select the input value and get rid of white spaces around it!
     const userEmail = $("#mail").val().trim();
     // Use a Regular Expression to check for Only Emails
-    const checkName = /^\w+([.-]?\w+)*@\w+(.com|.net|.org|.edu)$/.test(userEmail);
+    const checkName = /^\w+([.-]?\w+)*@\w+(\.com|\.net|\.org|\.edu)$/.test(userEmail);
     // Give user feedback about what they're doing wrong.
     if(!checkName){
       $("#mail").css('borderColor', 'red');
