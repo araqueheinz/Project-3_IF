@@ -242,37 +242,65 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function checkCardNumber () {
     const userCard = $("#cc-num").val().trim();
-    if(isNaN(userCard) || userCard === ""){
-      $("#cc-num").css('borderColor', 'red');
-      $("#nanCardError").remove();
-      // Display feedback message to the user
-      $("label[for='cc-num']").after(`<span class="error" id="nanCardError">* Enter only numbers</span>`);
+    // Check for the credit card option is available
+    if($("#payment").val() === "credit card"){
+      // Check for character or empty string
+      if(isNaN(userCard) || userCard === ""){
+        $("#cc-num").css('borderColor', 'red');
+        // Remove error message, not a number 
+        $("#nanCardError").remove();
+        // Remove error message, 13 to 16 digits long 
+        $("#lengthCardError").remove();
+        // Display new error message to the user, not a number 
+        $("label[for='cc-num']").after(`<span class="error" id="nanCardError">* Enter only numbers</span>`);
+      }
+      // Else remove both error messages
+      else{
+        $("#lengthCardError").remove();
+        $("#nanCardError").remove();
+      }
+      // Check for user card is a number
+      if(!isNaN(userCard) ){
+        $("#cc-num").css('borderColor', 'red');
+        $("#nanCardError").remove();
+        $("#lengthCardError").remove();
+        // Display feedback message to the user
+        $("label[for='cc-num']").after(`<span class="error" id="lengthCardError">* Enter between 13 and 16 digits</span>`);
+      }
+      // Check is it is number & between 13 and 16 digits long
+      if(!isNaN(userCard) && userCard.length >= 13 && userCard.length <= 16){
+        // Set style to normal
+        $("#cc-num").css('borderColor', '');
+        // Remove both error messages
+        $("#nanCardError").remove();
+        $("#lengthCardError").remove();
+      }
     }
+    // Else reset this input and remove error message
     else{
-      $("#nanCardError").remove();
-    }
-
-    if(!isNaN(userCard) && userCard.length >= 13 && userCard.length <= 16){
       $("#cc-num").css('borderColor', '');
+      // Remove both error messages
+      $("#nanCardError").remove();
       $("#lengthCardError").remove();
     }
-    else{
-      $("#cc-num").css('borderColor', 'red');
-      $("#lengthCardError").remove();
-      // Display feedback message to the user
-      $("label[for='cc-num']").after(`<span class="error" id="lengthCardError">* Enter between 13 and 16 characters<br></span>`);
-    }
-
   }
 
   function checkZip(){
     const zip = $("#zip").val().trim()
     const checkZip = /^\d{5}/.test(zip);
-    if(!checkZip){
-      $("#zip").css('borderColor', 'red');
-      $("#zipError").remove();
-      $("label[for='zip']").after(`<span class="error" id="zipError">* Enter a 5 digit zip code</span>`);
+    // Check for the credit card option is available
+    if($("#payment").val() === "credit card"){
+      if(!checkZip){
+        $("#zip").css('borderColor', 'red');
+        $("#zipError").remove();
+        $("label[for='zip']").after(`<span class="error" id="zipError">* Enter a 5 digit zip code</span>`);
+      }
+      else{
+        $('#zip').css('borderColor', '');
+        $("#zipError").remove();
+      }
     }
+    // Else reset this input and remove error message
     else{
       $('#zip').css('borderColor', '');
       $("#zipError").remove();
@@ -282,17 +310,22 @@ document.addEventListener("DOMContentLoaded", () => {
   function checkCvv(){
     const cvv = $("#cvv").val().trim()
     const checkCvv = /^\d{3}/.test(cvv);
-    if(!checkCvv){
-      $("#cvv").css('borderColor', 'red');
-      $("#cvvError").remove();
-      $("label[for='cvv']").after(`<span class="error" id="cvvError">* Enter a 3 digit cvv code</span>`);
+    // Check for the credit card option is available
+    if($("#payment").val() === "credit card"){
+      if(!checkCvv){
+        $("#cvv").css('borderColor', 'red');
+        $("#cvvError").remove();
+        $("label[for='cvv']").after(`<span class="error" id="cvvError">* Enter a 3 digit cvv code</span>`);
+      }
+      else{
+        $('#cvv').css('borderColor', '');
+        $("#cvvError").remove();
+      }
     }
+    // Else reset this input and remove error message
     else{
       $('#cvv').css('borderColor', '');
       $("#cvvError").remove();
     }
   }
-
-
-
 }); 
